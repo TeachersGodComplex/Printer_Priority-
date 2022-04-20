@@ -42,29 +42,7 @@ def menu():
     print("""
 Press '1' to se waitinglist
 Press '2' to add your name to waitinglist
-
-If your turn, write free printers name 
-and file out required info
-""")
-    get_printers()
-
-    while True: 
-        choice = input(">>>")
-        if (choice == "1"):
-                view()
-
-        elif (choice == "2"):
-                add_to_list()
-        
-        elif (choice == "Tomda"):
-                print_info()
-        
-        elif (choice == "Nemy"):
-                print_info()
-                
-        else:
-            print("Incorrect input")
-                        
+""") 
 
 def print_info(self):
         choice = "Tomda"
@@ -84,7 +62,6 @@ def get_printers():
     for printer in printers:
         printer.check_status()
         print()
-
 
 def view():
     my_file = open("waitinglist.txt", "r")
@@ -122,12 +99,32 @@ def main():
     
     printers.append(Printer("Tomda"))
     printers.append(Printer("Nemy"))
-    print("Printers has been initialized.")
-    print("Following printers are currently online.")
+    print("Loading Printers...")
+    print("Following printers are online.")
     for printer in printers:
         print(printer.name)
 
     menu()
+    get_printers()
+    print("""If your turn, write free printers name 
+and file out required info
+""")
+
+choice = input(">>>")
+if (choice == "1"):
+    view()
+
+elif (choice == "2"):
+    add_to_list()
+
+elif (choice == "Tomda"):
+    print_info()
+
+elif (choice == "Nemy"):
+    print_info()
+        
+else:
+        print("Incorrect input")
     
 
 if __name__ == "__main__":
