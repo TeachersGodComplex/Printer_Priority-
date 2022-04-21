@@ -1,6 +1,7 @@
 # Imports
 
 # Global variables
+from ssl import Options
 from tracemalloc import start
 from unicodedata import name
 
@@ -15,7 +16,8 @@ class Printer:
         self.name = name
         self.time = time
         self.start= start
-        self.status = False #True if printer, else False 
+        self.status = False #True if printer, else False
+        self.maker = ""
     
     def __str__(self) -> str:
         return f"Det som ska printas när vi printar objektet."
@@ -32,30 +34,51 @@ class Printer:
     def check_status(self):
         status = ""
         status = "is printing" if self.status else "is free"
-        print(f"{self.name} {status}\nPrinting time:{self.time}\nStarted:{self.start}")
-
+        print(f"{self.name} {status}\ntime:{self.time}\nStarted:{self.start}\nPrinting:{self.maker}")
+    
+    def new_print(self):
+        print(f"Adding new print to {self.name}") # Vad vill du ska stå här?
+        self.start = input("Enter printing time: ")
+        self.time = input("Enter current time: ")
+        self.maker = input("Who is printing: ")
+        self.status = True
 
 # Functions
 
+def options():
+    print("(1) See waitinglist")
+    print("(2) Add name to waitinglist")
+    print("(3) Chose printer to use")
+
+def view():
+    my_file = open("waitinglist.txt", "r")
+    content_list = my_file.readlines()
+    print(content_list)
+    
+def add_to_list():
+    list = ['waitinglist.txt']
+    name = input("Enter name:")
+    list.append(input)
+    print(list.name)
+
 def menu():
+    while True:
+        print("""----Options----""")
+        options()
+        choice = input(">>> ")
+        if choice == "1":
+            view()
+
+        elif choice == "2":
+            add_to_list()
+
+        elif choice == "3":
+            printer = pick_printer()
+            printer.new_print()
      
-    print("""
-Press '1' to se waitinglist
-Press '2' to add your name to waitinglist
-""") 
+        else:
+            print("Incorrect input")
 
-def print_info(self):
-        choice = "Tomda"
-        print("Please enter:")
-        self.name = input("Enter name: ")
-        self.start = input("Enter printing time: ")
-        self.time = input("Enter current time: ")
-
-        choice = "Nemy"
-        print("Please enter:")
-        self.name = input("Name: ")
-        self.start = input("Printing time: ")
-        self.time = input("Current time: ")
 
 def get_printers():
     print("----Printers----")
@@ -63,69 +86,34 @@ def get_printers():
         printer.check_status()
         print()
 
-def view():
-    my_file = open("waitinglist.txt", "r")
-    content_list = my_file.readlines()
-    print(content_list)
-    
-
-
-def add_to_list(self):
-    list = ['waitinglist.txt']
-    input("Enter name:")
-    list.append(input)
-    
-    print(list)
-    
-    file = open('waitinglist.txt', "rt")
-    childName = input("Enter your name:")
-    print("----- Waitinglist -----")
-    print("Name: " + file, end="")
-    
-    counter = 0
-    while True:
-        counter += 1
-        name = file.readline()
-        if (name == ""):
-            break
-        print("Name " + str(counter) + ": " + name, end="")
-    return self.add
-
-
+def pick_printer():
+    print()
+    print("Choose a printer:")
+    print("Pick the index you want to use.")
+    for i, printer in enumerate(printers):
+        print(f"{i}, {printer.name}")
+    pick = input(">>> ")
+    return printers[int(pick)]
 
 def main():
     #global printers
-
-    
-    printers.append(Printer("Tomda"))
-    printers.append(Printer("Nemy"))
+    nemy = Printer("Nemy")
+    tomda = Printer("Tomda")
+    printers.append(nemy)
+    printers.append(tomda)
     print("Loading Printers...")
-    print("Following printers are online.")
+    print("Following printers are online:")
     for printer in printers:
         print(printer.name)
 
-    menu()
-    get_printers()
-    print("""If your turn, write free printers name 
-and file out required info
+    print("""
+If your turn, choose printer 
+and fill in required info
+(Input is ALWAYS 1-4)
 """)
 
-choice = input(">>>")
-if (choice == "1"):
-    view()
-
-elif (choice == "2"):
-    add_to_list()
-
-elif (choice == "Tomda"):
-    print_info()
-
-elif (choice == "Nemy"):
-    print_info()
-        
-else:
-        print("Incorrect input")
+    get_printers()
+    menu()
     
-
 if __name__ == "__main__":
     main()
