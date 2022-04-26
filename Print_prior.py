@@ -42,6 +42,10 @@ class Printer:
         self.time = input("Enter current time: ")
         self.maker = input("Who is printing: ")
         self.status = True
+        while True:
+            get_printers()
+            menu()
+            
 
 # Functions
 
@@ -51,40 +55,30 @@ def options():
     print("(3) Chose printer to use")
 
 def view():
-    my_file = open("waitinglist.txt", "r")
-    content_list = my_file.readlines()
-    print(content_list)
     
+    #   Lösning 2
+    #     with open('waitinglis.txt') as f:
+    #         line = f.readline()
+    #         while line:
+    #             line = f.readline()
+    #             print(line)
+
+
+    # Lösning  med counter 
+    # lines = []
+    # with open('waitinglist.txt') as f:
+    #     lines = f.readlines()
+
+    # count = 0
+    # for line in lines:
+    #     count += 1
+    #     print(f'{count}: {line}')
+
 def add_to_list():
     list = ['waitinglist.txt']
     name = input("Enter name:")
     list.append(input)
     print(list.name)
-
-def menu():
-    while True:
-        print("""----Options----""")
-        options()
-        choice = input(">>> ")
-        if choice == "1":
-            view()
-
-        elif choice == "2":
-            add_to_list()
-
-        elif choice == "3":
-            printer = pick_printer()
-            printer.new_print()
-     
-        else:
-            print("Incorrect input")
-
-
-def get_printers():
-    print("----Printers----")
-    for printer in printers:
-        printer.check_status()
-        print()
 
 def pick_printer():
     print()
@@ -94,6 +88,30 @@ def pick_printer():
         print(f"{i}, {printer.name}")
     pick = input(">>> ")
     return printers[int(pick)]
+
+def menu():
+    print("""----Options----""")
+    options()
+    choice = input(">>> ")
+    if choice == "1":
+        view()
+
+    elif choice == "2":
+        add_to_list()
+
+    elif choice == "3":
+        printer = pick_printer()
+        printer.new_print()
+    
+    else:
+        print("Incorrect input")
+
+
+def get_printers():
+    print("----Printers----")
+    for printer in printers:
+        printer.check_status()
+        print()
 
 def main():
     #global printers
@@ -109,11 +127,12 @@ def main():
     print("""
 If your turn, choose printer 
 and fill in required info
-(Input is ALWAYS 1-4)
+(Input ALWAYS 1-3)
 """)
 
     get_printers()
     menu()
+    print()
     
 if __name__ == "__main__":
     main()
