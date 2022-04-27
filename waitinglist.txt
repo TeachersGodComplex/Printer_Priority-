@@ -1,5 +1,4 @@
------ Waitinglist -----
-Name 
-Person
-Name2
 Person2
+Pucko
+hello
+Zack

@@ -12,21 +12,17 @@ EOL = "\n"
 # Classes
 
 class Printer:
-    def __init__(self, name, time="", start="") -> None:
+    def __init__(self, name, start="") -> None:
         self.name = name
-        self.time = time
         self.start= start
         self.status = False #True if printer, else False
         self.maker = ""
     
-    def __str__(self) -> str:
-        return f"Det som ska printas när vi printar objektet."
+        def __str__(self) -> str:
+            return f"Det som ska printas när vi printar objektet."
 
     def name(self):
         return self.name
-
-    def time(self):
-        return self.time
 
     def start(self):
         return self.start
@@ -34,19 +30,20 @@ class Printer:
     def check_status(self):
         status = ""
         status = "is printing" if self.status else "is free"
-        print(f"{self.name} {status}\ntime:{self.time}\nStarted:{self.start}\nPrinting:{self.maker}")
+        # Detta visas när man "loggar in" 
+        # Om printern används ser man vem som printar, när den startades samt hur lång tid det kommer ta
+        print(f"{self.name} {status}\nStarted:{self.start}\nPrinting:{self.maker}")
     
     def new_print(self):
-        print(f"Adding new print to {self.name}") # Vad vill du ska stå här?
+        print(f"Adding new print to {self.name}") # Self.name = namn på vald printer
+        self.maker = input("Who is printing: ") 
         self.start = input("Enter printing time: ")
-        self.time = input("Enter current time: ")
-        self.maker = input("Who is printing: ")
-        self.status = True
+        print("Your name is automatically moved from the waitinglist")
+        next_in_waiting()
         while True:
             get_printers()
             menu()
             
-
 # Functions
 
 def options():
@@ -54,36 +51,28 @@ def options():
     print("(2) Add name to waitinglist")
     print("(3) Chose printer to use")
 
-def view():
-    
-    #   Lösning 2
-    #     with open('waitinglis.txt') as f:
-    #         line = f.readline()
-    #         while line:
-    #             line = f.readline()
-    #             print(line)
-
-
-    # Lösning  med counter 
-    # lines = []
-    # with open('waitinglist.txt') as f:
-    #     lines = f.readlines()
-
-    # count = 0
-    # for line in lines:
-    #     count += 1
-    #     print(f'{count}: {line}')
+def view(): 
+    lines = []
+    with open('waitinglist.txt') as f: 
+        lines = f.readlines() # Readline läser upp listan rad för rad
+    # Namn i listan numreras 
+    count = 0
+    for line in lines:
+        count += 1
+        print(f'{count}: {line}')
+    menu()
 
 def add_to_list():
-    list = ['waitinglist.txt']
-    name = input("Enter name:")
-    list.append(input)
-    print(list.name)
+    with open("waitinglist.txt", "a", encoding="utf-8") as waiting_list:
+        name = input("Enter name:") # Skriv in ditt namn i listan 
+        waiting_list.write(name+"\n")
+    menu()
 
 def pick_printer():
     print()
     print("Choose a printer:")
     print("Pick the index you want to use.")
+    # Detta ger printrarna ett index vilket gör att vi kan välja mellan dom
     for i, printer in enumerate(printers):
         print(f"{i}, {printer.name}")
     pick = input(">>> ")
@@ -106,9 +95,18 @@ def menu():
     else:
         print("Incorrect input")
 
+def next_in_waiting():
+    waiters = []
+    with open("waitinglist.txt", "r", encoding="utf-8") as f:
+        waiters = f.readlines()
+    next_in_line = waiters.pop(0)
+    with open("waitinglist.txt", "w", encoding="utf-8") as f:
+        for line in waiters:
+            f.write(line)
 
 def get_printers():
     print("----Printers----")
+    # Visar vilka printers som är lediga Free/Printing
     for printer in printers:
         printer.check_status()
         print()
