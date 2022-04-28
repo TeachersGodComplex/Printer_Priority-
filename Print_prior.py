@@ -9,12 +9,12 @@ from unicodedata import name
 printers = []
 EOL = "\n"
 
-# Classes
+# Class
 
 class Printer:
-    def __init__(self, name, start="") -> None:
+    def __init__(self, name, time="") -> None:
         self.name = name
-        self.start= start
+        self.time = time
         self.status = False #True if printer, else False
         self.maker = ""
     
@@ -25,31 +25,36 @@ class Printer:
         return self.name
 
     def start(self):
-        return self.start
+        return self.time
 
     def check_status(self):
         status = ""
         status = "is printing" if self.status else "is free"
         # Detta visas när man "loggar in" 
         # Om printern används ser man vem som printar, när den startades samt hur lång tid det kommer ta
-        print(f"{self.name} {status}\nStarted:{self.start}\nPrinting:{self.maker}")
+        print(f"{self.name} {status}\nPrinting:{self.maker}\nTime:{self.time}")
     
     def new_print(self):
+        print("")
         print(f"Adding new print to {self.name}") # Self.name = namn på vald printer
-        self.maker = input("Who is printing: ") 
-        self.start = input("Enter printing time: ")
+        self.maker = input("Who is printing: ") # name == next_in_line???
+        self.start = input("Enter printing time: ") # Kan man skriva in detta i listan 
         print("Your name is automatically moved from the waitinglist")
-        next_in_waiting()
-        while True:
-            get_printers()
-            menu()
-            
+        menu()
+       # next_in_waiting()
+    
+   # def done_printing(self):
+       # print("")
+       # print(f"{self.maker} are done printing") 
+       # print(f"{self.name} is now free to use") 
+
 # Functions
 
 def options():
     print("(1) See waitinglist")
     print("(2) Add name to waitinglist")
     print("(3) Chose printer to use")
+    # print("(4) Done printing")
 
 def view(): 
     lines = []
@@ -78,6 +83,14 @@ def pick_printer():
     pick = input(">>> ")
     return printers[int(pick)]
 
+# def picked_printer():
+   # print("Choose used printer:")
+   # print("Pick the index you have used.")
+   # for i, printed in enumerate(printers):
+    #    print(f"{i}, {printed.name}")
+   # pick = input(">>> ")
+   # return printers[int(pick)]
+    
 def menu():
     print("""----Options----""")
     options()
@@ -91,6 +104,10 @@ def menu():
     elif choice == "3":
         printer = pick_printer()
         printer.new_print()
+
+    # elif choice == "4":
+       # printed = picked_printer()
+       # printed.done_printing()
     
     else:
         print("Incorrect input")
