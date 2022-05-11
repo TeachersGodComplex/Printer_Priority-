@@ -6,11 +6,11 @@ This program is coded in phyton and will allow the user to structure the usage o
 
 ## Languages
 
-Pyhton
+Python
 
 ## Requirments
 
-- Phyton 3.7+
+- Python 3.7+
 
 ## Installation
 
