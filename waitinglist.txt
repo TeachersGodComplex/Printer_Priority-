@@ -1,6 +1,2 @@
-C
-L
-A
-S
 Ida
 Ida2
