@@ -36,7 +36,7 @@ This task have jet to be graded and there for pull request will not be approved.
 
 ## Licens
 
-[https://github.com/TeachersGodComplex/Printer_Priority-/blob/ece4d35e390bac3a3a8ec1d95b13497155ead12e/LICENSE](MIT)
+[MIT](https://github.com/TeachersGodComplex/Printer_Priority-/blob/ece4d35e390bac3a3a8ec1d95b13497155ead12e/LICENSE)
 
 ## Contact
 
