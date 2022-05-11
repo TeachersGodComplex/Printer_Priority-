@@ -2,7 +2,7 @@
 
 ## Description
 
-This program is coded in phyton and will allow the user to structure the usage off 3D-printors and be able to logg who is using the printer aswell as who's next in line. With this tool more people will find time to use the printers but it also makes it easy to trace back errors or broken parts to one person.
+This program is coded in python and will allow the user to structure the usage off 3D-printors and be able to logg who is using the printer aswell as who's next in line. With this tool more people will find time to use the printers but it also makes it easy to trace back errors or broken parts to one person.
 
 ## Languages
 
@@ -32,7 +32,7 @@ This program is not limited to printers, it can be used to document other stuff 
 
 ## Contribution
 
-This task have jet to be graded and there for pull request will not be approved. As soon it's been graded this will be allowed. 
+This task have yet to be graded and there for pull request will not be approved. As soon it's been graded this will be allowed. 
 
 ## Licens
 
