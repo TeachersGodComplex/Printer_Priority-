@@ -1,11 +1,6 @@
 # Imports
 
 # Global variables
-from ssl import Options
-from tracemalloc import start
-from unicodedata import name
-
-
 printers = []
 EOL = "\n"
 
