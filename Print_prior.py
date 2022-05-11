@@ -65,7 +65,6 @@ class Printer:
         self.maker = "" Tar bort värdet som tidigare stod där.  
         """
         print()
-        print(f"{self.maker} is done printing") 
         print(f"{self.name} is now free to use")
         self.maker = ""
         self.time = ""
