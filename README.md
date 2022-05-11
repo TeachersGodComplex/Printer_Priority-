@@ -26,9 +26,9 @@ This program is not limited to printers, it can be used to document other stuff 
 
 - [x] The code autoremoves names from waitinglist
 
-- [] Concrete examples and documentation of how the program can be used
+- [ ] Concrete examples and documentation of how the program can be used
 
-- [] Make sure you cant write over the current print
+- [ ] Make sure you cant write over the current print
 
 ## Contribution
 
@@ -36,7 +36,7 @@ This task have jet to be graded and there for pull request will not be approved.
 
 ## Licens
 
-[MIT] (https://github.com/TeachersGodComplex/Printer_Priority-/blob/ece4d35e390bac3a3a8ec1d95b13497155ead12e/LICENSE)
+[https://github.com/TeachersGodComplex/Printer_Priority-/blob/ece4d35e390bac3a3a8ec1d95b13497155ead12e/LICENSE](MIT)
 
 ## Contact
 
